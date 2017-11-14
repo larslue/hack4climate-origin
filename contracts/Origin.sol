@@ -1,4 +1,6 @@
 pragma solidity ^0.4.16;
+import "./OriginalCoin.sol";
+
 
 contract Origin {
   uint public amount;
@@ -14,7 +16,8 @@ contract Origin {
   address[] public authorities;
   uint public selectedAuthority;
   uint public fraudStake;
-
+  OriginalCoin public token;
+  
   modifier ownlyIssuer() {
     require (msg.sender == issuer);
     _;
@@ -55,7 +58,7 @@ contract Origin {
     _;
   }
 
-  function Origin(uint _amount, address _issuer, bytes32 _long, bytes32 _lat, bytes32 _method, uint _timestamp) payable {
+  function Origin(uint _amount, address _issuer, bytes32 _long, bytes32 _lat, bytes32 _method, uint _timestamp,address tokenAdress) payable {
     amount = _amount;
     stake = msg.value;
     issuer = _issuer;
@@ -65,11 +68,14 @@ contract Origin {
     timestamp = _timestamp;
     fraud = false;
     creationTime = now;
+    token = OriginalCoin(tokenAdress);
   }
 
   function claimOrigin() ownlyIssuer() noFraud() periodPassed(){
       //something like that
-      issuer.transfer(amount + stake);
+      issuer.transfer(stake);
+      token.mint(issuer,amount);
+      
   }
 
   function fraudDetected() noFraud() periodNotPassed() {

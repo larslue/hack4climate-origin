@@ -1,9 +1,9 @@
 var ConvertLib = artifacts.require("./ConvertLib.sol");
 var MetaCoin = artifacts.require("./MetaCoin.sol");
-var Factory = artifacts.require("./factory.sol");
-var Origins = artifacts.require("./Origins.sol");
+var Factory = artifacts.require("./OriginFactory.sol");
+var Origins = artifacts.require("./Origin.sol");
 var OriginalToken = artifacts.require("./OriginalCoin.sol");
-var Storage = artifacts.require("./storage.sol");
+var Storage = artifacts.require("./Storage.sol");
 
 
 
@@ -15,5 +15,4 @@ module.exports = function(deployer) {
   deployer.deploy(Origins);
   deployer.deploy(OriginalToken);
   deployer.deploy(Storage);
-  deployer.autolink();
 };

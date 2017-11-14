@@ -5,6 +5,8 @@ import {MetaSenderComponent} from './meta-sender/meta-sender.component';
 import {IssuerComponent} from './issuer/issuer.component';
 import {ChallengerComponent} from './challenger/challenger.component';
 
+import { MaterialModule } from '../material.module';
+
 import {UtilModule} from '../util/util.module';
 import {RouterModule} from '@angular/router';
 
@@ -12,7 +14,8 @@ import {RouterModule} from '@angular/router';
   imports: [
     CommonModule,
     RouterModule,
-    UtilModule
+    UtilModule,
+    MaterialModule
   ],
   declarations: [
       MetaSenderComponent,

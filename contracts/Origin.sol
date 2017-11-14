@@ -34,7 +34,7 @@ contract Origin {
   }
 
   modifier periodPassed() {
-    require (now >= creationTime + 21 days);
+    require (now >= creationTime + 60 seconds);
     _;
   }
 
@@ -71,7 +71,8 @@ contract Origin {
     token = OriginalCoin(tokenAdress);
   }
 
-  function claimOrigin() ownlyIssuer() noFraud() periodPassed(){
+  function claimOrigin() { 
+      //ownlyIssuer() noFraud() periodPassed(){
       //something like that
       issuer.transfer(stake);
       token.mint(issuer,amount);
@@ -83,7 +84,7 @@ contract Origin {
     fraudClaimer = msg.sender;
   }
 
-  function payFraudStake() fraudClaimed() isFraudClaimer() payable {
+  function payFraudStake()fraudClaimed() isFraudClaimer() payable {
     fraudStake += msg.value;
     selectAuthority();
   }

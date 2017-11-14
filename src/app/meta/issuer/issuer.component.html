@@ -1,30 +1,24 @@
 <h1>Issuer Page</h1>
 
-<h2>Name: {{name}}</h2>
-
-<select name="account" (change)="clickAddress($event)">
-    <option *ngFor="let account of accounts" >{{account}}</option>
-</select>
+<h2>Name: TODO {{name}}</h2>
+<h3 *ngFor="let account of accounts">
+    {{account}}
+</h3>
 
 
 <h2> Enter new Origin</h2>
 
-<div class="example-container">
-    <mat-form-field>
-        <input matInput placeholder="Input">
+<form class="example-form">
+    <mat-form-field class="example-full-width">
+        <input matInput placeholder="Favorite food" value="Sushi">
     </mat-form-field>
 
-    <mat-form-field>
-        <textarea matInput placeholder="Textarea"></textarea>
+    <mat-form-field class="example-full-width">
+        <textarea matInput placeholder="Leave a comment"></textarea>
     </mat-form-field>
+</form>
 
-    <mat-form-field>
-        <mat-select placeholder="Select">
-            <mat-option value="option">Option</mat-option>
-        </mat-select>
-    </mat-form-field>
-</div>
-
+<!--
 
 <h2>Example Truffle Dapp</h2>
 <h3>You have {{model.balance}} META</h3>
@@ -36,3 +30,4 @@
 <br><br><button id="send" (click)="sendCoin()">Send MetaCoin</button>
 <br><br>
 <span id="status">{{status}}</span>
+-->

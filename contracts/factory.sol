@@ -1,50 +1,31 @@
 pragma solidity ^0.4.0;
 
 import "./Origin.sol";
-
-contract Ownable {
-
-  address public owner;
-
-  function Ownable() {
-    owner = msg.sender;
-  }
-
-  modifier onlyOwner() {
-    require(msg.sender == owner);
-    _;
-  }
-
-  function transferOwnership(address newOwner) onlyOwner {
-    require(newOwner != address(0));
-    owner = newOwner;
-  }
-}
+import "./OriginalCoin.sol";
 
 
-contract OriginFactory {
+
+
+contract OriginFactory is Ownable {
 
   
   address[] activeOrigins;
   address[] authorities; 
+  OriginalCoin public token;
   
   
   
-  function OriginFactory() {
+  function OriginFactory(address tokenAdress) {
       
-      authorities.push(msg.sender);
-      
+     
+      token = OriginalCoin(tokenAdress);
+      token.mint(this,1000);
   }
 
-  function addAutority(address authority) onlyOwner{
-      
-      authorities.push(authority);
-      
-  }
 
-  function createOrigin(uint amount, address issuer,bytes32 long, bytes32 lat, bytes32 method,uint timestamp) returns (address){
-    address newOrigin = new Origin(amount,issuer,long,lat,method,timestamp,authorities);
-    activeOrigins.push();
+  function createOrigin(uint _amount, address _issuer, bytes32 _long, bytes32 _lat, bytes32 _method, uint _timestamp) returns (address){
+    address newOrigin = new Origin(_amount,_issuer,_long,_lat,_method,_timestamp);
+    activeOrigins.push(newOrigin);
     return (newOrigin);
     
   }

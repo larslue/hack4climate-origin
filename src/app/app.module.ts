@@ -16,7 +16,7 @@ import {
 
 // App
 import { AppComponent } from './app.component';
-import {MetaModule} from './meta/meta.module';
+import { MetaModule } from './meta/meta.module';
 
 @NgModule({
   declarations: [
@@ -27,11 +27,12 @@ import {MetaModule} from './meta/meta.module';
     BrowserAnimationsModule,
     FormsModule,
     HttpModule,
-    MetaModule,
     // Material UI
     MatButtonModule,
     MatCheckboxModule,
-    MatTabsModule
+    MatTabsModule,
+    // Meta
+    MetaModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -10,7 +10,7 @@ contract OriginFactory is Ownable {
 
   
   address[] activeOrigins;
-  address[] authorities; 
+  
   OriginalCoin public token;
   
   
@@ -19,10 +19,15 @@ contract OriginFactory is Ownable {
       
      
       token = OriginalCoin(tokenAdress);
-      token.mint(this,1000);
+      
   }
 
-
+  function mintTokens(uint _amount){
+      
+      token.mint(this,_amount);
+  }
+  
+  
   function createOrigin(uint _amount, address _issuer, bytes32 _long, bytes32 _lat, bytes32 _method, uint _timestamp) returns (address){
     address newOrigin = new Origin(_amount,_issuer,_long,_lat,_method,_timestamp);
     activeOrigins.push(newOrigin);

@@ -9,7 +9,7 @@ import "./OriginalCoin.sol";
 contract OriginFactory is Ownable {
 
   
-  address[] activeOrigins;
+  address[] public activeOrigins;
   
   OriginalCoin public token;
   

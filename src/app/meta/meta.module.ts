@@ -12,7 +12,7 @@ import {RouterModule} from '@angular/router';
     UtilModule
   ],
   declarations: [MetaSenderComponent, IssuerComponent],
-  exports: [MetaSenderComponent]
+  exports: [MetaSenderComponent, IssuerComponent]
 })
 export class MetaModule {
 }

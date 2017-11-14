@@ -1,25 +1,21 @@
 <h1>Angular Truffle Box</h1>
 
-<md-tabs md-dynamic-height md-border-bottom>
-    <md-tab label="one">
-        <md-content class="md-padding">
-            <h1 class="md-display-2">Issuer</h1>
-            <app-issuer></app-issuer>
-        </md-content>
-    </md-tab>
-    <md-tab label="two">
-        <md-content class="md-padding">
-            <h1 class="md-display-2">Meta Sender</h1>
-            <app-meta-sender></app-meta-sender>
-        </md-content>
-    </md-tab>
-    <md-tab label="three">
-        <md-content class="md-padding">
-            <h1 class="md-display-2">Tab Three</h1>
-            BLABLA
-        </md-content>
-    </md-tab>
-</md-tabs>
+<mat-tab-group>
+    <mat-tab label="Tab 1">
+        <app-issuer></app-issuer>
+    </mat-tab>
+    <mat-tab label="Tab 2">
+        <app-meta-sender></app-meta-sender>
+    </mat-tab>
+</mat-tab-group>
 
-
-
+<mat-tab-group>
+    <mat-tab label="One">
+        <h1>Some tab content</h1>
+        <p>...</p>
+    </mat-tab>
+    <mat-tab label="Two">
+        <h1>Some more tab content</h1>
+        <p>...</p>
+    </mat-tab>
+</mat-tab-group>

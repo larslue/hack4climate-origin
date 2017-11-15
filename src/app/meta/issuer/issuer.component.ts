@@ -1,6 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {Web3Service} from '../../util/web3.service';
+import { HttpClient } from '@angular/common/http';
 import metacoin_artifacts from '../../../../build/contracts/MetaCoin.json';
+
 
 @Component({
   selector: 'app-issuer',
@@ -15,13 +17,28 @@ export class IssuerComponent implements OnInit {
     amount: 5,
     receiver: '',
     balance: 0,
-    account: ''
+    account: '',
+    address: ''
   };
 
+  amount = 0;
   status = '';
+  lat = '';
+  lon = '';
+  data = {};
 
-  constructor(private web3Service: Web3Service) {
+  constructor(private web3Service: Web3Service, private http: HttpClient) {
     console.log('Constructor: ' + web3Service);
+  }
+
+  SubmitOrigin(event) {
+    console.log("getLocationForAddress:" + this.model.address + ", amount: " + this.amount);
+    this.http.get('https://maps.googleapis.com/maps/api/geocode/json?address=' + this.model.address + '&key=AIzaSyB_AqfNVguabv7oNGyXM42_qk4E9NxR60g').subscribe(data => {
+      console.log(data);
+      var address = data['results'][0].geometry.location;
+      this.lat = address.lat;
+      this.lon = address.lng;
+    });
   }
 
   ngOnInit(): void {

@@ -1,5 +1,6 @@
 pragma solidity ^0.4.16;
 import "./OriginalCoin.sol";
+import "./Storage.sol";
 
 
 contract Origin {
@@ -18,6 +19,7 @@ contract Origin {
   uint public fraudStake;
   OriginalCoin public token;
   
+  
   modifier ownlyIssuer() {
     require (msg.sender == issuer);
     _;
@@ -34,12 +36,12 @@ contract Origin {
   }
 
   modifier periodPassed() {
-    require (now >= creationTime + 60 seconds);
+    require (now >= creationTime + 180 seconds);
     _;
   }
 
   modifier periodNotPassed() {
-    require (now < creationTime + 21 days);
+    require (now < creationTime + 180 seconds);
     _;
   }
 
@@ -58,21 +60,22 @@ contract Origin {
     _;
   }
 
-  function Origin(uint _amount, address _issuer,address tokenAdress ) { // bytes32 _long, bytes32 _lat, bytes32 _method, uint _timestamp,address tokenAdress)  {
+  function Origin(uint _amount, address _issuer,bytes32 _long, bytes32 _lat, bytes32 _method, uint _timestamp,address tokenAdress,address storageAdress) { // bytes32 _long, bytes32 _lat, bytes32 _method, uint _timestamp,address tokenAdress)  {
     amount = _amount;
-   // stake = 0;
+    stake = 0;
     issuer = _issuer;
-  //  long = _long;
-   // lat = _lat;
-    //method = _method;
-   // timestamp = _timestamp;
-   // fraud = false;
-   // creationTime = now;
+    long = _long;
+    lat = _lat;
+    method = _method;
+    timestamp = _timestamp;
+    fraud = false;
+    creationTime = now;
     token = OriginalCoin(tokenAdress);
+    authoritiesStorage = Storage(storageAdress);
+    authorities = authoritiesStorage.get
   }
 
-  function claimOrigin() { 
-      //ownlyIssuer() noFraud() periodPassed(){
+  function claimOrigin() ownlyIssuer() noFraud() periodPassed(){
       //something like that
       //issuer.transfer(stake);
       token.mint(issuer,amount);

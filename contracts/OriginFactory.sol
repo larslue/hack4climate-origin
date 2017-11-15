@@ -1,38 +1,107 @@
 pragma solidity ^0.4.16;
-
-import "./Origin.sol";
 import "./OriginalCoin.sol";
+import "./Storage.sol";
 
 
-
-
-contract OriginFactory is Ownable {
-
-  
-  address[] public activeOrigins;
-  
+contract Origin {
+  uint public amount;
+  uint public stake;
+  address public issuer;
+  address public fraudClaimer;
+  bytes32 public long;
+  bytes32 public lat;
+  bytes32 public method;
+  uint public timestamp;
+  bool public fraud;
+  uint public creationTime;
+  address[] public authorities;
+  uint public selectedAuthority;
+  uint public fraudStake;
   OriginalCoin public token;
   
-  address tokenAdress = 0x0;
   
-  function OriginFactory(address _tokenAdress) {
-      
-     tokenAdress= _tokenAdress;
-      token = OriginalCoin(tokenAdress);
+  modifier ownlyIssuer() {
+    require (msg.sender == issuer);
+    _;
+  }
+
+  modifier noFraud() {
+    require (fraud == false);
+    _;
+  }
+
+  modifier fraudClaimed() {
+    require (fraud == true);
+    _;
+  }
+
+  modifier periodPassed() {
+    require (now >= creationTime + 180 seconds);
+    _;
+  }
+
+  modifier periodNotPassed() {
+    require (now < creationTime + 180 seconds);
+    _;
+  }
+
+  modifier enoughStakePaid() {
+    require (msg.value == (amount/10));
+    _;
+  }
+
+  modifier  isFraudClaimer() {
+    require (msg.sender == fraudClaimer);
+    _;
+  }
+
+  modifier isSelectedAuthority() {
+    require (msg.sender == authorities[selectedAuthority]);
+    _;
+  }
+
+  function Origin(uint _amount, address _issuer,bytes32 _long, bytes32 _lat, bytes32 _method, uint _timestamp,address tokenAdress,address storageAdress) { // bytes32 _long, bytes32 _lat, bytes32 _method, uint _timestamp,address tokenAdress)  {
+    amount = _amount;
+    stake = 0;
+    issuer = _issuer;
+    long = _long;
+    lat = _lat;
+    method = _method;
+    timestamp = _timestamp;
+    fraud = false;
+    creationTime = now;
+    token = OriginalCoin(tokenAdress);
+    authoritiesStorage = Storage(storageAdress);
+    authorities = authoritiesStorage.get
+  }
+
+  function claimOrigin() ownlyIssuer() noFraud() periodPassed(){
+      //something like that
+      //issuer.transfer(stake);
+      token.mint(issuer,amount);
       
   }
 
-  function mintTokens(uint _amount){
-      
-      token.mint(this,_amount);
+  function fraudDetected() noFraud() periodNotPassed() {
+    fraud = true;
+    fraudClaimer = msg.sender;
   }
-  
-  
-  function createOrigin(uint _amount, address _issuer, bytes32 _long, bytes32 _lat, bytes32 _method, uint _timestamp) returns (address){
-    //200,"0x3Dd90D5eb224C4637f885b7476eCCBA6b3Aa45C5",33,33,3,33
-    address newOrigin = new Origin(_amount,_issuer,tokenAdress);
-    activeOrigins.push(newOrigin);
-    
-    
+
+  function payFraudStake()fraudClaimed() isFraudClaimer() payable {
+    fraudStake += msg.value;
+    selectAuthority();
   }
+
+  function selectAuthority() private {
+    selectedAuthority = uint(block.blockhash(block.number - 1)) % authorities.length;
+  }
+
+  function fraudDecision(bool _decision) fraudClaimed() isSelectedAuthority() {
+    if(_decision) {
+
+    } else {
+
+    }
+  }
+
 }

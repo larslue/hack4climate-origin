@@ -18,8 +18,8 @@ contract Origin {
   uint public selectedAuthority;
   uint public fraudStake;
   OriginalCoin public token;
-  
-  
+
+
   modifier ownlyIssuer() {
     require (msg.sender == issuer);
     _;
@@ -72,14 +72,14 @@ contract Origin {
     creationTime = now;
     token = OriginalCoin(tokenAdress);
     authoritiesStorage = Storage(storageAdress);
-    authorities = authoritiesStorage.get
+    authorities = authoritiesStorage.getAuthorities();
   }
 
   function claimOrigin() ownlyIssuer() noFraud() periodPassed(){
       //something like that
       //issuer.transfer(stake);
       token.mint(issuer,amount);
-      
+
   }
 
   function fraudDetected() noFraud() periodNotPassed() {

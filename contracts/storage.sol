@@ -51,6 +51,10 @@ contract Storage is Ownable  {
       }
     }
 
+    function getAuthorities() constant returns (address[]) {
+      return authorities;
+    }
+
     function remove(address[] array, uint index) internal returns(address[] value) {
         if (index >= array.length) return;
 

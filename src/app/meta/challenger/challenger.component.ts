@@ -7,10 +7,14 @@ import {Web3Service} from '../../util/web3.service';
   styleUrls: ['./challenger.component.css']
 })
 export class ChallengerComponent implements OnInit {
+  issues= [
+    {name: "RWE", amount: "100", location: "Essen, Germany"},
+    {name: "BP", amount: "300", location: "California, US"},
+    {name: "e.on", amount: "50", location: "Dortmund, Germany"}
+  ];
 
-  model = {
-    name: 'blabla'
-  };
+
+    name: 'blabla';
 
   constructor(private web3Service: Web3Service) {
     console.log('Constructor: ' + web3Service);

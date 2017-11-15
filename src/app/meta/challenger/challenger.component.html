@@ -1,10 +1,15 @@
 <h1>Challenger Page</h1>
 
-<h2>Name: {{name}}</h2>
 
 <mat-list>
-    <mat-list-item *ngFor="let folder of folders">asdf</mat-list-item>
-    <mat-list-item>Challenge x</mat-list-item>
-    <mat-list-item>Challenge x</mat-list-item>
-    <mat-list-item>Challenge x</mat-list-item>
-  </mat-list>
+    <mat-list-item style="width:100%;margin-bottom: 10px;" *ngFor="let issue of issues">
+        <div style="background-color: lightcoral; padding: 10px;border-radius:10px;">
+            <span class="listItemContent" > Name {{issue.name}}</span>
+            <span class="listItemContent" >Location {{issue.location}}</span>
+            <span class="listItemContent" >Amount {{issue.amount}}</span>
+            <span id="listItemContentQuestionedBy" class="listItemContent"> Costs for bullshit: {{issue.amount * 0.1}}</span>
+            <button class="judgeButton" style="margin-left:30px;" mat-button (click)="callBullshit($event)" > Call Bullshit </button>
+        </div>
+
+    </mat-list-item>
+</mat-list>

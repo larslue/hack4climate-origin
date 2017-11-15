@@ -9,9 +9,9 @@ import metacoin_artifacts from '../../../../build/contracts/MetaCoin.json';
 })
 export class MetaSenderComponent implements OnInit {
   bullshits= [
-      {name: "RWE", amount: "100", location: "Essen, Germany"},
-      {name: "BP", amount: "300", location: "California, US"},
-      {name: "e.on", amount: "50", location: "Dortmund, Germany"}
+      {name: "RWE", amount: "100", location: "Essen, Germany", questionedBy: "NABU"},
+      {name: "BP", amount: "300", location: "California, US", questionedBy: "Greenpeace"},
+      {name: "e.on", amount: "50", location: "Dortmund, Germany", questionedBy: "Amnesty"}
       ];
 
   status = '';

@@ -2,6 +2,10 @@
 @import '~@angular/material/prebuilt-themes/indigo-pink.css';
 @import '~https://fonts.googleapis.com/icon?family=Material+Icons';
 
+body{
+    background-color: lightgray;
+}
+
 #content-wrappe{
     padding: 10px;
 }
@@ -10,6 +14,10 @@
     background-color: darkgrey;
     padding:5px;
     border-radius: 3px;
+}
+
+#listItemContentQuestionedBy{
+    background-color: darkcyan;
 }
 
 .judgeButton{

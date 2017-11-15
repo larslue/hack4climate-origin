@@ -2,5 +2,14 @@
 <h2> List of Bullshits to confirm</h2>
 
 <mat-list>
-  <mat-list-item style="width:100%;" *ngFor="let bullshit of bullshits">{{bullshit.name}}</mat-list-item>
+  <mat-list-item style="width:100%;" *ngFor="let bullshit of bullshits">
+    <div style="background-color: lightcoral; padding: 15px;margin-bottom: 10px;">
+      <span class="listItemContent" > Name {{bullshit.name}}</span>
+      <span class="listItemContent" >Location {{bullshit.location}}</span>
+      <span class="listItemContent" >Amount {{bullshit.amount}}</span>
+      <button class="judgeButton" style="margin-left:30px;" mat-button (click)="judgeBullshit($event)" > Bullshit </button>
+      <button style="margin-left:10px;" mat-button (click)="judgeNoBullshit($event)" > No Bullshit</button>
+    </div>
+
+  </mat-list-item>
 </mat-list>

@@ -5,3 +5,13 @@
 #content-wrappe{
     padding: 10px;
 }
+
+.listItemContent{
+    background-color: darkgrey;
+    padding:5px;
+    border-radius: 3px;
+}
+
+.judgeButton{
+    background-color: lightgreen;
+}

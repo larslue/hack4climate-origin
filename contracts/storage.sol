@@ -1,6 +1,6 @@
 pragma solidity ^0.4.0;
 
-contract Ownable {
+contract Ownuble {
 
   address public owner;
 
@@ -8,7 +8,7 @@ contract Ownable {
    * @dev The Ownable constructor sets the original `owner` of the contract to the sender
    * account.
    */
-  function Ownable() {
+  function Ownuble() {
     owner = msg.sender;
   }
 
@@ -32,7 +32,7 @@ contract Ownable {
 }
 
 
-contract Storage is Ownable  {
+contract Storage is Ownuble  {
     address[] authorities;
 
     function Storage () {
@@ -71,3 +71,4 @@ contract Storage is Ownable  {
 
 
 }
+

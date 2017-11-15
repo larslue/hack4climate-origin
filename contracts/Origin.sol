@@ -1,6 +1,6 @@
 pragma solidity ^0.4.16;
 import "./OriginalCoin.sol";
-import "./Storage.sol";
+import "./storage.sol";
 
 
 contract Origin {
@@ -71,8 +71,10 @@ contract Origin {
     fraud = false;
     creationTime = now;
     token = OriginalCoin(tokenAdress);
-    authoritiesStorage = Storage(storageAdress);
+    /*TODO import autorities from storage.sol
+    address authoritiesStorage = Storage(storageAdress);
     authorities = authoritiesStorage.getAuthorities();
+    */
   }
 
   function claimOrigin() ownlyIssuer() noFraud() periodPassed(){
@@ -80,6 +82,11 @@ contract Origin {
       //issuer.transfer(stake);
       token.mint(issuer,amount);
 
+  }
+  
+  function () payable {
+      //TODO use constructor function instead 
+      stake += msg.value;
   }
 
   function fraudDetected() noFraud() periodNotPassed() {
@@ -96,11 +103,11 @@ contract Origin {
     selectedAuthority = uint(block.blockhash(block.number - 1)) % authorities.length;
   }
 
-  function fraudDecision(bool _decision) fraudClaimed() isSelectedAuthority() {
+  function fraudDecision(bool _decision) fraudClaimed() { //TODO selectedAuthorityisSelectedAuthority() {
     if(_decision) {
-
+        fraudClaimer.transfer(stake + fraudStake);
     } else {
-
+        fraud = false;
     }
   }
 

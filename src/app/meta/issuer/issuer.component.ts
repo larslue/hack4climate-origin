@@ -21,7 +21,7 @@ export class IssuerComponent implements OnInit {
     address: ''
   };
 
-  amount = 0;
+  amount;
   status = '';
   lat = '';
   lon = '';

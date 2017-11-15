@@ -5,26 +5,30 @@
     {{account}}
 </h3>
 
-
-<h2> Enter new Origin</h2>
-
-<form class="example-form">
-    <mat-form-field class="example-full-width">
-        <input matInput placeholder="Amount" [(ngModel)]="amount" name="amount"  >
-    </mat-form-field>
-
-    <mat-form-field class="example-full-width">
-        <input matInput placeholder="Wixhausen" [(ngModel)]="model.address" name="address">
-    </mat-form-field>
-
-</form>
-
-<!-- <input matInput placeholder="Address" name="address" value="Bonn, Germany" > -->
-<button mat-button (click)="SubmitOrigin($event)" > Submit Origin</button>
 <br/>
 <br/>
-<div>Latitude: {{lat}}</div>
-<div>Longitude: {{lon}}</div>
+<div style="width:100%;background-color: lightcoral;border-radius: 3px;padding: 5px;">
+    <h2> Enter new Origin</h2>
+
+    <form class="example-form">
+        <mat-form-field class="example-full-width">
+            <input matInput placeholder="Amount" [(ngModel)]="amount" name="amount"  >
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width">
+            <input matInput placeholder="Wixhausen" [(ngModel)]="model.address" name="address">
+        </mat-form-field>
+
+    </form>
+
+    <!-- <input matInput placeholder="Address" name="address" value="Bonn, Germany" > -->
+    <button style="background-color: darkgrey" mat-button (click)="SubmitOrigin($event)" > Submit Origin</button>
+    <br/>
+    <br/>
+    <div>Latitude: {{lat}}</div>
+    <div>Longitude: {{lon}}</div>
+
+</div>
 
 
 

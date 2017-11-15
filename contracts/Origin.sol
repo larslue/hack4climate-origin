@@ -58,23 +58,23 @@ contract Origin {
     _;
   }
 
-  function Origin(uint _amount, address _issuer, bytes32 _long, bytes32 _lat, bytes32 _method, uint _timestamp,address tokenAdress) payable {
+  function Origin(uint _amount, address _issuer,address tokenAdress ) { // bytes32 _long, bytes32 _lat, bytes32 _method, uint _timestamp,address tokenAdress)  {
     amount = _amount;
-    stake = msg.value;
+   // stake = 0;
     issuer = _issuer;
-    long = _long;
-    lat = _lat;
-    method = _method;
-    timestamp = _timestamp;
-    fraud = false;
-    creationTime = now;
+  //  long = _long;
+   // lat = _lat;
+    //method = _method;
+   // timestamp = _timestamp;
+   // fraud = false;
+   // creationTime = now;
     token = OriginalCoin(tokenAdress);
   }
 
   function claimOrigin() { 
       //ownlyIssuer() noFraud() periodPassed(){
       //something like that
-      issuer.transfer(stake);
+      //issuer.transfer(stake);
       token.mint(issuer,amount);
       
   }

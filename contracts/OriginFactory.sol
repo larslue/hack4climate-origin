@@ -1,4 +1,4 @@
-pragma solidity ^0.4.0;
+pragma solidity ^0.4.16;
 
 import "./Origin.sol";
 import "./OriginalCoin.sol";
@@ -30,9 +30,9 @@ contract OriginFactory is Ownable {
   
   function createOrigin(uint _amount, address _issuer, bytes32 _long, bytes32 _lat, bytes32 _method, uint _timestamp) returns (address){
     //200,"0x3Dd90D5eb224C4637f885b7476eCCBA6b3Aa45C5",33,33,3,33
-    address newOrigin = new Origin(_amount,_issuer,_long,_lat,_method,_timestamp,tokenAdress);
+    address newOrigin = new Origin(_amount,_issuer,tokenAdress);
     activeOrigins.push(newOrigin);
-    return (newOrigin);
+    
     
   }
 }
